@@ -1,71 +1,165 @@
-# branch-time-tracker README
+# 🕒 Branch Time Tracker
 
-This is the README for your extension "branch-time-tracker". After writing up a brief description, we recommend including the following sections.
+A VS Code extension that automatically tracks how much time you spend working on different Git branches. Perfect for developers who want to understand their coding patterns, track project time, or analyze productivity across different features.
 
-## Features
+## ✨ Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- **Automatic Time Tracking**: Starts tracking when you switch branches or begin coding
+- **Smart Session Management**: Resumes tracking after VS Code restarts (within 10 minutes)
+- **Idle Detection**: Automatically stops tracking after 5 minutes of inactivity
+- **Beautiful Reports**: View detailed time reports with interactive charts
+- **Data Export**: Export your time data to JSON files
+- **Per-Workspace Tracking**: Separate time tracking for each project/workspace
+- **Zero Configuration**: Works out of the box with any Git repository
 
-For example if there is an image subfolder under your extension project workspace:
+<!-- ## 📦 Installation
 
-\!\[feature X\]\(images/feature-x.png\)
+1. Open VS Code
+2. Go to Extensions (`Ctrl+Shift+X` or `Cmd+Shift+X`)
+3. Search for "Branch Time Tracker"
+4. Click "Install" -->
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+<!-- Or install via command line:
+```bash
+code --install-extension your-publisher-name.branch-time-tracker
+``` -->
 
-## Requirements
+## 🚀 Getting Started
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+1. **Open a Git Repository**: The extension only works in folders that contain a `.git` directory
+2. **Start Coding**: Time tracking begins automatically when you:
+   - Edit files
+   - Switch between files
+   - Focus the VS Code window
+3. **View Your Time**: Use the command palette or extension commands to see your tracked time
 
-## Extension Settings
+## 📋 Commands
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+Access these commands via the Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P`):
 
-For example:
+| Command | Description |
+|---------|-------------|
+| `Branch Timer: Start Tracking` | Manually start time tracking for current branch |
+| `Branch Timer: Show Total Time` | Quick view of time spent on each branch |
+| `Branch Timer: View Time Report` | Open detailed report with charts |
+| `Branch Timer: Export Time Data` | Export data to JSON file in Downloads folder |
+| `Branch Timer: Clear Time Data` | Clear all tracked time for current workspace |
 
-This extension contributes the following settings:
+## 📊 Understanding Your Data
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+### Quick Summary
+```
+Branch Time Summary (MyProject_a1b2c3d4):
+main: 5h 23m 45s
+feature/user-auth: 3h 12m 30s
+bugfix/login-issue: 1h 45m 12s
+```
 
-## Known Issues
+### Detailed Report
+The visual report includes:
+- **Bar Chart**: Compare time across branches
+- **Detailed Table**: Exact time breakdown
+- **Summary Stats**: Total hours and branch count
+- **Export Options**: Save data for external analysis
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+## ⚙️ How It Works
 
-## Release Notes
+### Automatic Tracking
+- **Starts When**: You edit code, switch files, or focus VS Code
+- **Stops When**: You go idle (5+ minutes), unfocus VS Code, or close the editor
+- **Branch Detection**: Automatically detects current Git branch using `git rev-parse`
 
-Users appreciate release notes as you update your extension.
+### Data Storage
+- All data is stored in VS Code's global storage (survives updates)
+- No local files created (keeps your workspace clean)
+- Per-workspace tracking prevents data mixing between projects
 
-### 1.0.0
+### Session Recovery
+- If VS Code crashes or restarts, tracking resumes automatically
+- If you restart VS Code within 10 minutes, it continues tracking. After 10 minutes, it starts fresh to avoid counting break time.
+- Saves tracking state every time you switch branches
 
-Initial release of ...
+## 📁 Data Export Format
 
-### 1.0.1
+Exported JSON files include:
+```json
+{
+  "workspace": "MyProject_a1b2c3d4",
+  "exportDate": "2024-01-15T10:30:00.000Z",
+  "totalHours": 12.75,
+  "branches": {
+    "main": 19425,
+    "feature/user-auth": 11550,
+    "bugfix/login-issue": 6312
+  }
+}
+```
 
-Fixed issue #.
+## 🔧 Requirements
 
-### 1.1.0
+- **VS Code**: Version 1.60.0 or higher
+- **Git**: Must be installed and accessible from command line
+- **Git Repository**: Extension only works in folders with `.git` directory
 
-Added features X, Y, and Z.
+## 💡 Tips & Best Practices
+
+### Maximize Accuracy
+- Keep VS Code focused while coding (unfocusing stops tracking)
+- The extension detects typing, so it works even if you don't save files
+- Switch branches frequently to get accurate per-feature time tracking
+
+### Understanding Workspaces
+- Each workspace gets a unique ID based on folder path
+- Moving a project folder creates a new workspace ID
+- Use consistent project locations for best tracking continuity
+
+### Data Management
+- Export data regularly for backup
+- Clear old workspace data to keep storage clean
+- Check reports weekly to understand your coding patterns
+
+## 🐛 Troubleshooting
+
+### "No Git branch found"
+- Ensure you're in a Git repository (`ls -la` should show `.git` folder)
+- Run `git status` to verify Git is working
+- Make sure you're on a branch (not in detached HEAD state)
+
+### Tracking Not Starting
+- Check that you're in a workspace folder (not just individual files)
+- Verify Git is installed and accessible: `git --version`
+- Try the "Start Tracking" command manually
+
+### Data Not Persisting
+- Data is stored globally, not in your project folder
+- If switching VS Code versions, data might be in different storage locations
+- Export important data before major VS Code updates
+
+### Time Seems Inaccurate
+- Idle timeout is 5 minutes - longer breaks stop tracking
+- Unfocusing VS Code stops tracking immediately
+- Only active coding time is tracked, not thinking/planning time
+
+## 🤝 Contributing
+
+Found a bug or have a feature request? We'd love to hear from you!
+
+1. **Issues**: Report bugs or request features on my GitHub issues page
+2. **Pull Requests**: Contributions are welcome!
+3. **Feedback**: Use VS Code's extension rating system to share your experience
+
+<!-- ## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details. -->
+
+## 🙏 Acknowledgments
+
+- Built with VS Code Extension API
+- Uses Chart.js for beautiful time visualizations
+- Inspired by the need for better developer productivity insights
 
 ---
 
-## Following extension guidelines
+**Happy Coding! 🚀**
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+*Track your time, understand your patterns, and code more effectively with Branch Time Tracker.*

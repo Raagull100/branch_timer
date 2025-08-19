@@ -9,6 +9,19 @@
   "categories": [
     "Other"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Raagull100/branch_timer"
+  },
+  "author": "Raagull Sakthivel V",
+  "keywords": [
+    "git",
+    "branch",
+    "time tracking",
+    "productivity",
+    "development",
+    "timesheet"
+  ],
   "activationEvents": [
     "onStartupFinished",
     "onCommand:branchTimer.start"

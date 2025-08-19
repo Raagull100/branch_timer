@@ -27,6 +27,14 @@
       {
         "command": "branchTimer.viewTimeReport",
         "title": "Branch Timer: View Time Report"
+      },
+      {
+        "command": "branchTimer.exportTimeData",
+        "title": "Branch Timer: Export Time Data"
+      },
+      {
+        "command": "branchTimer.clearTimeData",
+        "title": "Branch Timer: Clear Workspace Data"
       }
     ]
   },

@@ -13,7 +13,9 @@
     "type": "git",
     "url": "https://github.com/Raagull100/branch_timer"
   },
+  "publisher": "RaagullSakthivel",
   "author": "Raagull Sakthivel V",
+  "license": "MIT",
   "keywords": [
     "git",
     "branch",
